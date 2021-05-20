@@ -26,25 +26,26 @@ public Encoder() {
     {JOptionPane.showMessageDialog(null, "Celesi i pavlefshem \nNumri i sortuar");}
     else {
      s = JOptionPane.showInputDialog("Ju lutem jepni fjaline qe do te enkodohet "); 
-	 n = 0; 
-	 if(s.length()%sKey.length()==0)
-	 {n=s.length()/sKey.length();}
-	 else {n=s.length()/sKey.length()+1;}
-	 char[][] fjalia= new char[n][m];//array qe mbushet me karakteret e @String s
-	 fill.twoDimensionalByColumn(fjalia, n, m, s);
+	 n = s.length(); 
+	 int r=0;
+	 if(n%m==0)
+	 {r=n/m;}
+	 else {r=n/m+1;}
+	 char[][] fjalia= new char[r][m];//array qe mbushet me karakteret e @String s
+	 fill.twoDimensionalByColumn(fjalia, r, m, s);
 	 String[] fjalite=new String[m];//array qe mbushet bazuar ne kolonat e @char[][] fjalia
-	 fill.oneDimensionalByColumn(fjalite, n, m, fjalia);
+	 fill.oneDimensionalByColumn(fjalite, r, m, fjalia);
 	 sorter.sort(fjalite, arrkey, m);
 	 String sSorted =""; //String ku bashkohen fjalite e @String[] fjalite
 	 for (int i=0; i<m; i++){  
 			 sSorted=sSorted+fjalite[i];
 		 }
-	 char[][]fjaliaSorted=new char[n][m];//array qe mbushet me karakteret e @String sSorted
-	 fill.twoDimensionalByColumn(fjaliaSorted, n, m, sSorted);
-	 String[] rezultati= new String[n];//array qe mbushet bazuar ne kolonat e @char[][] fjaliaSorted
-	 fill.oneDimensionalByRow(rezultati, n, m, fjaliaSorted);
+	 char[][]fjaliaSorted=new char[r][m];//array qe mbushet me karakteret e @String sSorted
+	 fill.twoDimensionalByColumn(fjaliaSorted, r, m, sSorted);
+	 String[] rezultati= new String[r];//array qe mbushet bazuar ne kolonat e @char[][] fjaliaSorted
+	 fill.oneDimensionalByRow(rezultati, r, m, fjaliaSorted);
 	 System.out.println("Ky eshte rezultati:");
-	 for(int i=0; i<n; i++) {
+	 for(int i=0; i<r; i++) {
 		if(i<n-1) { System.out.print(rezultati[i]+", ");}
 		else { System.out.print("dhe " +rezultati[i]+".");}
 	 }
