@@ -1,0 +1,70 @@
+import java.util.Arrays;
+
+/** ArrayFiller bene mbushjen e array-ve qe i vendosim si input me
+ * elementet qe i vendosim si input  */
+public class ArrayFiller {
+	int c;//numer qe na ndihmon gjate numerimit
+	
+/** @int[] oneDimensional bene mbushjen e nje array @int[] arr me numra
+ *  qe merren nga nje @String s */
+public int[] oneDimensional(int[] arr ,int u, String s) {
+	c=0;
+	for (int i=0; i<u; i++) {  //create
+		arr[i]=new Integer(s.substring(i,i+1)).intValue();
+		c++;}
+	return arr;
+	}
+ 
+/** @String[] oneDimensionalByColumn bene mbushjen e nje array @String[] s me karaktere
+ *  qe merren sipas kolonave nga nje array @char[][] arr*/
+public String[] oneDimensionalByColumn(String[] s,int n,int m, char[][] arr) {
+	Arrays.fill(s, "");
+	for(int i=0; i<m; i++) {
+		for(int j=0; j<n; j++) {
+			s[i]= s[i]+arr[j][i];
+		}
+	}	
+	return s;
+	}
+
+/** @String[] oneDimensionalByRow bene mbushjen e nje array @String[] s me karaktere
+ *  qe merren sipas rreshtave nga nje array @char[][] arr*/
+public String[] oneDimensionalByRow(String[] s,int n,int m, char[][] arr) {
+	Arrays.fill(s, "");
+	 for(int i=0; i<n; i++) { 
+			for(int j=0; j<m; j++) {
+				s[i]= s[i]+arr[i][j];
+			}
+		}
+	return s;
+	}
+
+/** @char[][] twoimensionalByColumn bene mbushjen sipas kolonave ne nje array @char[][]
+ *  arr me karaktere qe merren nga nje @String s */
+public char[][] twoDimensionalByColumn(char[][] arr,int n, int m, String s) {
+	c=0;
+	for(int i=0;i<m;i++){   
+		for(int j=0;j<n;j++){
+			if(c<=s.length()-1){
+				arr[j][i]=s.charAt(c);
+				}
+			else {arr[j][i]=' ';}
+			c++;
+}
+}
+	return arr;	
+}
+
+/** @char[][] twoimensionalByRow bene mbushjen sipas rreshtave ne nje array @char[][]
+ *  arr me karaktere qe merren nga nje @String s */
+public char[][] twoDimensionalByRow(char[][] arr,int n, int m, String s){
+	c=0;
+	for(int i=0;i<n;i++){   
+		 for(int j=0;j<m;j++){
+			 arr[i][j]=s.charAt(c);
+			 c++;
+}
+}
+	return arr;
+}
+}
