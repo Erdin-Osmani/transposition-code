@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.util.*;
+
+/** Encoder bene enkodimin sipas inputit te shfrytezuesit */
+public class Encoder{
+	int key;//ruan celesin e zgjedhur nga perdoruesi
+	String s;//ruan fjaline e dhene nga shfrytezuesi
+	int m;//ruan gjatesine e qelesit
+	int n;//ruan gjatesine e @String s
+	ArrayFiller fill = new ArrayFiller();//krijon nje objekt te klases ArrayFiller
+	ArraySorter sorter = new ArraySorter();//krijon nje objekt te klases ArraySorter
+	
+	/** Encoder eshte metoda konstruktor e klases */
+public Encoder() {
+	String sKey = JOptionPane.showInputDialog("Ju lutem jepni celesin \n(Numer pozitv dy apo me shume shifror jo i sortuar)");
+	key = new Integer(sKey).intValue();
+	if (key<10) 
+	{JOptionPane.showMessageDialog(null, "Celesi i pavlefshem");}
+	else {
+	m = sKey.length();
+	int[] arrkey = new int [m];
+	fill.oneDimensional(arrkey, m, sKey);
+	int[] arrkeySorted = arrkey.clone();
+	Arrays.sort(arrkeySorted);
+    if(Arrays.equals(arrkey, arrkeySorted)) 
+    {JOptionPane.showMessageDialog(null, "Celesi i pavlefshem \nNumri i sortuar");}
+    else {
+     s = JOptionPane.showInputDialog("Ju lutem jepni fjaline qe do te enkodohet "); 
+	 n = 0; 
+	 if(s.length()%sKey.length()==0)
+	 {n=s.length()/sKey.length();}
+	 else {n=s.length()/sKey.length()+1;}
+	 char[][] fjalia= new char[n][m];//array qe mbushet me karakteret e @String s
+	 fill.twoDimensionalByColumn(fjalia, n, m, s);
+	 String[] fjalite=new String[m];//array qe mbushet bazuar ne kolonat e @char[][] fjalia
+	 fill.oneDimensionalByColumn(fjalite, n, m, fjalia);
+	 sorter.sort(fjalite, arrkey, m);
+	 String sSorted =""; //String ku bashkohen fjalite e @String[] fjalite
+	 for (int i=0; i<m; i++){  
+			 sSorted=sSorted+fjalite[i];
+		 }
+	 char[][]fjaliaSorted=new char[n][m];//array qe mbushet me karakteret e @String sSorted
+	 fill.twoDimensionalByColumn(fjaliaSorted, n, m, sSorted);
+	 String[] rezultati= new String[n];//array qe mbushet bazuar ne kolonat e @char[][] fjaliaSorted
+	 fill.oneDimensionalByRow(rezultati, n, m, fjaliaSorted);
+	 System.out.println("Ky eshte rezultati:");
+	 for(int i=0; i<n; i++) {
+		if(i<n-1) { System.out.print(rezultati[i]+", ");}
+		else { System.out.print("dhe " +rezultati[i]+".");}
+	 }
+}
+}
+}
+}
