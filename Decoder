@@ -1,0 +1,55 @@
+import javax.swing.*;
+import java.util.*;
+
+/** Decoder bene dekodimin sipas inputit te shfrytezuesit */
+public class Decoder{
+	int key;//ruan celesin e zgjedhur nga perdoruesi
+	String s;//ruan fjalite e dhena nga shfrytezuesi
+	int m;//ruan gjatesine e qelesit
+	int n;//ruan gjatesine e @String s
+	ArrayFiller fill = new ArrayFiller();//krijon nje objekt te klases ArrayFiller
+	ArraySorter sorter = new ArraySorter();//krijon nje objekt te klases ArraySorter
+
+	/** Decoder eshte metoda konstruktor e klases */
+public Decoder() {
+	String sKey = JOptionPane.showInputDialog("Ju lutem jepni celesin \n(Numer pozitv dy apo me shume shifror jo i sortuar)");
+	key = new Integer(sKey).intValue();
+	if (key<10) 
+	{JOptionPane.showMessageDialog(null, "Celesi i pavlefshem");}
+	else {
+	m = sKey.length();
+	int[] arrkey = new int [m];
+	fill.oneDimensional(arrkey, m, sKey);
+		int[] arrkeySorted = arrkey.clone();
+		Arrays.sort(arrkeySorted);
+	    if(Arrays.equals(arrkey, arrkeySorted)) 
+	    {JOptionPane.showMessageDialog(null, "Celesi i pavlefshem \nNumri i sortuar");}
+	    else {
+	 JOptionPane.showMessageDialog(null,"Ju lutem jepni fjalite  qe do te dekodohen ne vijim \n(Fjalite duhet te jene "+m+" karaktere te gjata) "); 
+	 s = "";
+	 boolean bol = true;
+	 int c = 1;
+	 while(bol) {
+		 String temp = JOptionPane.showInputDialog("Fjalia "+c+"\nShtyp cancel per te ndaluar");
+		 if(temp==null || temp.length()!=m) {bol=false;}
+		 else {s=s+temp;c++;}}
+	 n = s.length(); 
+	 int r=0;
+	 if(n%m==0)
+	 {r=n/m;}
+	 else {r=n/m+1;}
+	 char[][] fjalia= new char[r][m];//array qe mbushet me karakteret e @String s
+	 fill.twoDimensionalByRow(fjalia, r, m, s);
+	 String[] fjalite=new String[m]; //array qe mbushet bazuar ne kolonat e @char[][] fjalia
+	 fill.oneDimensionalByColumn(fjalite, r, m, fjalia);
+	 sorter.desort(fjalite, arrkey, arrkeySorted, m);
+	 String rezultati =""; //String ku bashkangjiten fjalite e @String[] fjalite
+	 for (int i=0; i<m; i++){  
+			 rezultati=rezultati+fjalite[i];
+		 }
+		 System.out.println("Rezultati: \n" +rezultati);
+	 }
+	 
+}
+}
+}
