@@ -25,7 +25,7 @@ public Decoder() {
 	    if(Arrays.equals(arrkey, arrkeySorted)) 
 	    {JOptionPane.showMessageDialog(null, "Celesi i pavlefshem \nNumri i sortuar");}
 	    else {
-	 JOptionPane.showMessageDialog(null,"Ju lutem jepni fjalite qe do te dekodohen ne vijim"); 
+	 JOptionPane.showMessageDialog(null,"Ju lutem jepni fjalite  qe do te dekodohen ne vijim \n(Fjalite duhet te jene "+m+" karaktere te gjata) "); 
 	 s = "";
 	 boolean bol = true;
 	 int c = 1;
@@ -33,14 +33,15 @@ public Decoder() {
 		 String temp = JOptionPane.showInputDialog("Fjalia "+c+"\nShtyp cancel per te ndaluar");
 		 if(temp==null || temp.length()!=m) {bol=false;}
 		 else {s=s+temp;c++;}}
-	 n = 0; 
-	 if(s.length()%sKey.length()==0)
-	 {n=s.length()/sKey.length();}
-	 else {n=s.length()/sKey.length()+1;}
-	 char[][] fjalia= new char[n][m];//array qe mbushet me karakteret e @String s
-	 fill.twoDimensionalByRow(fjalia, n, m, s);
+	 n = s.length(); 
+	 int r=0;
+	 if(n%m==0)
+	 {r=n/m;}
+	 else {r=n/m+1;}
+	 char[][] fjalia= new char[r][m];//array qe mbushet me karakteret e @String s
+	 fill.twoDimensionalByRow(fjalia, r, m, s);
 	 String[] fjalite=new String[m]; //array qe mbushet bazuar ne kolonat e @char[][] fjalia
-	 fill.oneDimensionalByColumn(fjalite, n, m, fjalia);
+	 fill.oneDimensionalByColumn(fjalite, r, m, fjalia);
 	 sorter.desort(fjalite, arrkey, arrkeySorted, m);
 	 String rezultati =""; //String ku bashkangjiten fjalite e @String[] fjalite
 	 for (int i=0; i<m; i++){  
