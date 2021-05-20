@@ -1,0 +1,13 @@
+import javax.swing.JOptionPane;
+
+/** Controller eshte klasa e cila e ndihmon perdoruesin ti jep urdhra programit, 
+ *  kjo klase permban metoden main, e cila e bene programin te ekzekutueshem*/
+public class Controller {
+public static void main(String[] args) {
+	String s = JOptionPane.showInputDialog("Ju lutem tregoni a deshironi te beni enkodim apo dekodim\n"
+			+ "Shtyp 1 per enkodim\n"+"Shtyp 2 per dekodim");
+		if(s.equals("1")){new Encoder();}
+		else if(s.equals("2")){new Decoder();}
+		else {JOptionPane.showMessageDialog(null, "Ka ndodhur nje gabim");}
+	}
+}
